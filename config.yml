@@ -1,0 +1,58 @@
+title: Jake Price
+baseURL: https://jakeprice.dev
+theme: jpd
+languageCode: en-gb
+params:
+  firstname: Jake
+  surname: Price
+  about: I'm a technology professional who's been passionate about computers since my Grandad introduced me to an Intel 386 back in the 90s when I was a kid. Those moments inspired a passion within for technology, and I've been playing around with anything with a circuit board ever since. Whenever I have a moment you can probably find me working on something computer-related, and this is where I like to write about those moments.
+outputs:
+  home:
+    - html
+    - rss
+disableKinds:
+    - taxonomy
+    - term
+# Override Chroma Syntax Highlighting:
+pygmentsUseClasses: true
+markup:
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      strikethrough: true
+      table: true
+      taskList: true
+      typographer: true
+    parser:
+      attribute:
+        block: false
+        title: true
+      autoHeadingID: true
+      autoHeadingIDType: github
+    renderer:
+      hardWraps: true
+      unsafe: true
+      xhtml: false  
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+    hl_Lines: 
+    lineAnchors: 
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: true
+    style: 
+    tabWidth: 4
+related:
+  includeNewer: true
+  indices:
+  - name: tags
+    weight: 100
+  - name: date
+    weight: 10
+  threshold: 80
+  toLower: false
