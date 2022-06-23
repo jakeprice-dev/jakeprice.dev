@@ -1,0 +1,3 @@
+[submodule "themes/jpd"]
+	path = themes/jpd
+	url = git@github.com:jakeprice-dev/jpd.git
