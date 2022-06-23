@@ -11,7 +11,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          submodules: true
 
       - name: Build Site
         run: docker run --user 1001:1001 --rm --volume ${{ github.workspace }}:/home/hugo jakepricedev/docker-hugo:0.101.0
+
 
