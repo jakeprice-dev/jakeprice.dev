@@ -25,6 +25,6 @@ jobs:
           #        run: docker run --user 1001:1001 --rm --volume ${{ github.workspace }}:/home/hugo jakepricedev/docker-hugo:0.101.0
 
       - name: Remove existing site directory
-        run: ssh ${{ secret.SERVER_USER }}@${{ secret.SERVER_IP }} -i ~/.ssh/id_rsa rm -rf /home/${{ secret.SERVER_USER }}/compose/jakeprice.dev/hugo/public
+        run: ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} -i ~/.ssh/id_rsa rm -rf /home/${{ secrets.SERVER_USER }}/compose/jakeprice.dev/hugo/public
 
 
