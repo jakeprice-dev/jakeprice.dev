@@ -12,9 +12,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: true
+          submodules: true # Ensure theme/jpd is included
 
-      - name: Build Site
-        run: docker run --user 1001:1001 --rm --volume ${{ github.workspace }}:/home/hugo jakepricedev/docker-hugo:0.101.0
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: id_rsa # optional
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+          #      - name: Build Site
+          #        run: docker run --user 1001:1001 --rm --volume ${{ github.workspace }}:/home/hugo jakepricedev/docker-hugo:0.101.0
+
+      - name: Remove existing site directory
+        run: ssh ${{ secret.SERVER_USER }}@${{ secret.SERVER_IP }} -i ~/.ssh/id_rsa rm -rf /home/${{ secret.SERVER_USER }}/compose/jakeprice.dev/hugo/public
 
 
