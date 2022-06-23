@@ -15,6 +15,9 @@ jobs:
       - name: Check permissions
         run: ls -l ${{ github.workspace }}
 
+      - name: Check etc/passwd
+        run: cat /etc/passwd
+
       - name: Build Site
-        run: docker run --rm --volume ${{ github.workspace }}:/home/hugo jakepricedev/docker-hugo:0.101.0
+        run: docker run --user runner:docker --rm --volume ${{ github.workspace }}:/home/hugo jakepricedev/docker-hugo:0.101.0
 
