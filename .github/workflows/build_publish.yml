@@ -3,6 +3,8 @@ name: Build & publish blog
 on:
   push:
     branches: ["master"]
+  workflow_dispatch:
+    branches: ["master"]
 
 jobs:
   build-site:
