@@ -21,7 +21,7 @@ jobs:
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           name: id_rsa # optional
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }} # ssh-keyscan -H <host-ip>
 
       - name: Build Site
         run: docker run --user 1001:1001 --rm --volume ${{ github.workspace }}:/home/hugo jakepricedev/docker-hugo:0.101.0
