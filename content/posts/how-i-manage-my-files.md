@@ -89,20 +89,15 @@ $ du -h --max-depth=1 my/files/ | sort -$
 
 ## Backups
 
-`my` is currently backed up to two places.
+`my` is currently backed up to three places, using the 3-2-1 rule, detailed [here](https://www.veeam.com/blog/321-backup-rule.html).
 
-1. A cron job runs a Borg Backup script each night at 3am. This backs up to my 1TB `/mnt/archive-hdd-01` on my home server.
+1. A cron job mounts my 1TB backup drive `/mnt/archive-hdd-01` and then runs a Borg Backup script each night at 22:00. It's good practice to keep it unmounted when not being used.
+2. A second cron job runs an hour later at 23:00 and this runs Borg Backup on an [rsync.net](https://rsync.net) server, which is my offsite backup solution.
+3. The final part of my backup strategy runs Borg Backup on an external hard drive. I try to do this weekly and have a reminder in for it.
 
-```sh
-#Ansible: Backup fileshare to Borg repository
-0 3 * * * /usr/bin/bash /mnt/data-ssd-01/my/files/code/ppn/shared/scripts/borg_backup_my.sh
-```
+I reguarly test my backups by checking I can still restore from them as well, which is really easy to do with Borg. This is important because as [Shrodingers Backup](https://www.novastor.com/blog/schrodingers-backup-good-bad-backup) states:
 
-2. I also run a manual rsync backup to 1TB External Hard Drive. I have a reminder to do this each month, as it's deliberately not connected usually.
-
-I am _acutely_ aware that I'm ignoring best practices regarding backing up _offsite_.
-
-I do have a Borg Backup account with rsync.net that I really do need to get setup asap, but when you have two kids time is limited!
+> The condition of any backup is unknown until a restore is attempted.
 
 ## Access
 
